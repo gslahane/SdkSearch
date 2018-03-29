@@ -12,5 +12,5 @@ build
 /local.properties
 /captures
 
-# OSX
-.DS_Store
+# SQL Delight
+.sqldelight
