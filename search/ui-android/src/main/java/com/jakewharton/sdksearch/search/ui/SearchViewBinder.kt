@@ -32,6 +32,7 @@ import com.jakewharton.sdksearch.search.ui.util.onKey
 import com.jakewharton.sdksearch.search.ui.util.onScroll
 import com.jakewharton.sdksearch.search.ui.util.onTextChanged
 import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.channels.SendChannel
 import kotlinx.coroutines.experimental.channels.actor
 import kotlinx.coroutines.experimental.channels.consumeEach
 import kotlinx.coroutines.experimental.launch
@@ -39,7 +40,7 @@ import java.util.function.Consumer
 
 class SearchViewBinder(
   view: View,
-  private val events: Consumer<Event>,
+  private val events: SendChannel<Event>,
   private val onClick: ItemHandler,
   private val onCopy: ItemHandler,
   private val onShare: ItemHandler,
@@ -91,7 +92,7 @@ class SearchViewBinder(
       queryClear.isVisible = it.isNotEmpty()
       queryInput.typeface = if (it.isEmpty()) Typeface.DEFAULT else robotoMono
 
-      events.accept(Event.QueryChanged(it.toString()))
+      events.offer(Event.QueryChanged(it.toString()))
     }
 
     val touchSlop = ViewConfiguration.get(context).scaledTouchSlop
@@ -157,7 +158,7 @@ class SearchViewBinder(
 
       if (model.syncStatus == FAILED) {
         snackbar.setAction(R.string.dismiss) {
-          events.accept(ClearSyncStatus)
+          events.offer(ClearSyncStatus)
         }
       }
     } else {
