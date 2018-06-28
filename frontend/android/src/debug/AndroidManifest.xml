@@ -1,16 +1,16 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jakewharton.sdksearch"
+    package="com.jakewharton.sdksearch.frontend"
     >
   <application>
-    <activity android:name=".ui.MainActivity">
+    <activity android:name="com.jakewharton.sdksearch.ui.MainActivity">
       <meta-data
           android:name="android.app.shortcuts"
           android:resource="@xml/shortcuts"
           />
     </activity>
     <activity
-        android:name=".ui.OptionsActivity"
+        android:name="com.jakewharton.sdksearch.ui.OptionsActivity"
         android:label="Options"
         >
       <intent-filter>

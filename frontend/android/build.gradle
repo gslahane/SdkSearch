@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.feature'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'kotlin-kapt'
 
@@ -7,9 +7,9 @@ archivesBaseName = 'sdk-search'
 android {
   compileSdkVersion buildConfig.compileSdk
 
-  defaultConfig {
-    applicationId 'com.jakewharton.sdksearch'
+  baseFeature true
 
+  defaultConfig {
     minSdkVersion buildConfig.minSdk
     targetSdkVersion buildConfig.targetSdk
 
@@ -27,19 +27,6 @@ android {
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
-  }
-
-  lintOptions {
-    textReport true
-    textOutput 'stdout'
-    lintConfig rootProject.file('lint.xml')
-
-    checkDependencies true
-    checkTestSources true
-    explainIssues false
-
-    // We run a full lint analysis as build part in CI, so skip vital checks for assemble task.
-    checkReleaseBuilds false
   }
 
   signingConfigs {
@@ -61,7 +48,6 @@ android {
 
   buildTypes {
     debug {
-      applicationIdSuffix '.debug'
       signingConfig signingConfigs.debug
 
       buildConfigField 'boolean', 'IS_CI_BUILD', isCiBuild.toString()

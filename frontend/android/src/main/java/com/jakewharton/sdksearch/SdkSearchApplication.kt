@@ -3,6 +3,7 @@ package com.jakewharton.sdksearch
 import android.annotation.SuppressLint
 import android.app.Application
 import com.bugsnag.android.Bugsnag
+import com.jakewharton.sdksearch.frontend.BuildConfig
 import com.jakewharton.timber.bugsnag.BugsnagTree
 import dagger.android.HasActivityInjector
 import timber.log.LogcatTree

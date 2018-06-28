@@ -4,8 +4,8 @@ import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-import com.jakewharton.sdksearch.R
 import com.jakewharton.sdksearch.api.dac.BaseUrl
+import com.jakewharton.sdksearch.frontend.R
 import com.jakewharton.sdksearch.reference.AndroidReference
 import com.jakewharton.sdksearch.reference.PRODUCTION_DAC
 import com.jakewharton.sdksearch.reference.PRODUCTION_GIT_WEB

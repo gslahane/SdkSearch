@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import androidx.core.widget.toast
-import com.jakewharton.sdksearch.R
+import com.jakewharton.sdksearch.frontend.R
 import com.jakewharton.sdksearch.store.item.Item
 import com.jakewharton.sdksearch.reference.AndroidReference
 import com.jakewharton.sdksearch.search.ui.ItemHandler

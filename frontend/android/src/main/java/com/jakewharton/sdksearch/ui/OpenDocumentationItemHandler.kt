@@ -6,8 +6,8 @@ import android.content.Intent
 import android.support.customtabs.CustomTabsIntent
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
-import com.jakewharton.sdksearch.R
 import com.jakewharton.sdksearch.api.dac.BaseUrl
+import com.jakewharton.sdksearch.frontend.R
 import com.jakewharton.sdksearch.reference.AndroidReference
 import com.jakewharton.sdksearch.search.ui.ItemHandler
 import com.jakewharton.sdksearch.store.item.Item

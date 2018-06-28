@@ -1,6 +1,7 @@
 package com.jakewharton.sdksearch
 
 import com.jakewharton.sdksearch.debug.updater.UpdateConfig
+import com.jakewharton.sdksearch.frontend.BuildConfig
 import dagger.Module
 import dagger.Provides
 

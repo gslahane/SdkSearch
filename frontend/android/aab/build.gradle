@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+archivesBaseName = 'sdk-search'
+
+android {
+  compileSdkVersion buildConfig.compileSdk
+
+  defaultConfig {
+    applicationId 'com.jakewharton.sdksearch'
+
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+
+    versionCode buildConfig.version.code
+    versionName buildConfig.version.name
+
+    resConfigs 'en'
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  lintOptions {
+    textReport true
+    textOutput 'stdout'
+    lintConfig rootProject.file('lint.xml')
+
+    checkDependencies true
+    checkTestSources true
+    explainIssues false
+
+    // We run a full lint analysis as build part in CI, so skip vital checks for assemble task.
+    checkReleaseBuilds false
+  }
+
+  signingConfigs {
+    debug {
+      storeFile file('../debug.keystore')
+      storePassword 'sdksearch'
+      keyAlias 'sdksearch'
+      keyPassword 'sdksearch'
+    }
+    if (file('../upload.keystore').exists()) {
+      upload {
+        storeFile file('../upload.keystore')
+        storePassword propOrEmpty('SDK_SEARCH_UPLOAD_STORE_PASSWORD')
+        keyAlias 'sdksearch'
+        keyPassword propOrEmpty('SDK_SEARCH_UPLOAD_KEY_PASSWORD')
+      }
+    }
+  }
+
+  buildTypes {
+    debug {
+      applicationIdSuffix '.debug'
+      signingConfig signingConfigs.debug
+    }
+    release {
+      if (file('../upload.keystore').exists()) {
+        signingConfig signingConfigs.upload
+      } else {
+        signingConfig signingConfigs.debug
+      }
+
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles(file('../src/main/shrinker-rules.pro'))
+    }
+  }
+
+  packagingOptions {
+    exclude 'kotlin/**'
+    exclude '**/*.kotlin_metadata'
+    exclude 'META-INF/*.kotlin_module'
+    exclude 'META-INF/*.version'
+  }
+
+  bundle {
+    language {
+      enableSplit = false // We currently only have one language.
+    }
+  }
+}
+
+dependencies {
+  implementation project(':frontend:android')
+}

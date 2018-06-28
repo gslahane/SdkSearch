@@ -2,7 +2,7 @@ package com.jakewharton.sdksearch.ui
 
 import android.app.Activity
 import android.os.Bundle
-import com.jakewharton.sdksearch.R
+import com.jakewharton.sdksearch.frontend.R
 import com.jakewharton.sdksearch.options.presenter.OptionsPresenter
 import com.jakewharton.sdksearch.options.ui.OptionsUiBinder
 import dagger.Module
